@@ -37,7 +37,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
       </div>
       <section className="drawer-side lg:bg-neutral">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-        <ul className="menu p-4 w-80 text-neutral lg:text-base-100">
+        <ul className="menu p-4 w-80 text-base-100">
           {/* <!-- Sidebar content here --> */}
           <li onClick={onSidebarNavigate}>
             <Link href="/">Home</Link>
