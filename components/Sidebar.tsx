@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
+import { IconLayoutSidebarLeftExpand } from "@tabler/icons";
 
 interface SidebarProps {
   children: React.ReactNode;
@@ -48,17 +49,21 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
         {children}
         <label
           htmlFor="my-drawer-2"
-          className="m-5 btn btn-primary drawer-button absolute top-0 right-0 lg:hidden"
+          className="m-5 drawer-button absolute top-0 right-0 cursor-pointer lg:hidden"
         >
-          Open drawer
+          <IconLayoutSidebarLeftExpand size={40} />
         </label>
       </div>
-      <section className="drawer-side lg:bg-neutral">
+      <section className="drawer-side">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-        <ul className="menu p-4 w-80 text-base-100">
+        <ul className="menu p-4 w-80 text-base-100 bg-neutral ">
           {/* <!-- Sidebar content here --> */}
           {sideBarListItems.map((item, index) => (
-            <li key={index} onClick={onSidebarNavigate}>
+            <li
+              className="text-2xl font-bold"
+              key={index}
+              onClick={onSidebarNavigate}
+            >
               <Link href={item.path}>{item.body}</Link>
             </li>
           ))}
