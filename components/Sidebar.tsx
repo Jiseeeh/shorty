@@ -7,19 +7,25 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const toggleSidebar = () => {
+
+  const onToggleSidebar = () => {
     setIsOpen((prevIsOpen) => !prevIsOpen);
   };
+
+  const onSidebarNavigate = () => {
+    setIsOpen(false);
+  };
+
   return (
-    <nav className="drawer drawer-mobile">
+    <nav className="drawer drawer-mobile bg-base-100">
       <input
         id="my-drawer-2"
         type="checkbox"
         className="drawer-toggle"
-        onChange={toggleSidebar}
+        onChange={onToggleSidebar}
         checked={isOpen}
       />
-      <div className="drawer-content flex flex-col items-center justify-center">
+      <div className="drawer-content text-neutral flex flex-col items-center justify-center ">
         {/* main content */}
         {children}
         <label
@@ -29,18 +35,18 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
           Open drawer
         </label>
       </div>
-      <div className="drawer-side">
+      <section className="drawer-side lg:bg-neutral">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-        <ul className="menu p-4 w-80 bg-base-100 text-base-content">
+        <ul className="menu p-4 w-80 text-neutral lg:text-base-100">
           {/* <!-- Sidebar content here --> */}
-          <li>
+          <li onClick={onSidebarNavigate}>
             <Link href="/">Home</Link>
           </li>
-          <li>
+          <li onClick={onSidebarNavigate}>
             <Link href="/shorties">Shorties</Link>
           </li>
         </ul>
-      </div>
+      </section>
     </nav>
   );
 };
