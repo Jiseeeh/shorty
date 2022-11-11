@@ -17,6 +17,8 @@ const Form: React.FC = () => {
     setFormValue("");
   };
 
+  const onSaveShorties = () => {};
+
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormValue(e.target.value);
   };
@@ -46,6 +48,9 @@ const Form: React.FC = () => {
           <IconTrash />
         </button>
       </section>
+      <button className="btn hover:btn-success" type="button">
+        Save my shorties
+      </button>
     </form>
   );
 };
