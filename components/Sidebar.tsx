@@ -7,6 +7,24 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const sideBarListItems = [
+    {
+      path: "/",
+      body: "Home",
+    },
+    {
+      path: "/shorties",
+      body: "Shorties",
+    },
+    {
+      path: "/signUp",
+      body: "Sign up",
+    },
+    {
+      path: "/login",
+      body: "Login",
+    },
+  ];
 
   const onToggleSidebar = () => {
     setIsOpen((prevIsOpen) => !prevIsOpen);
@@ -39,12 +57,11 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
         <ul className="menu p-4 w-80 text-base-100">
           {/* <!-- Sidebar content here --> */}
-          <li onClick={onSidebarNavigate}>
-            <Link href="/">Home</Link>
-          </li>
-          <li onClick={onSidebarNavigate}>
-            <Link href="/shorties">Shorties</Link>
-          </li>
+          {sideBarListItems.map((item, index) => (
+            <li key={index} onClick={onSidebarNavigate}>
+              <Link href={item.path}>{item.body}</Link>
+            </li>
+          ))}
         </ul>
       </section>
     </nav>
