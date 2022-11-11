@@ -8,7 +8,7 @@ module.exports = {
     extend: {},
   },
   daisyui: {
-    theme: [
+    themes: [
       {
         rngTheme: {
           primary: "#ed7bb0",
