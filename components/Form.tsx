@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { IconChecks, IconClipboardCopy, IconTrash } from "@tabler/icons";
 
+import randomize from "../helper/randomize";
+
 const Form: React.FC = () => {
   const [formValue, setFormValue] = useState<string>("");
 
