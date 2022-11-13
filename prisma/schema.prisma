@@ -18,9 +18,9 @@ model User {
 }
 
 model Shorty {
-  id        String @id @default(auto()) @map("_id") @db.ObjectId
-  owner     User   @relation(fields: [ownerName], references: [name])
-  ownerName String
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  owner     User?   @relation(fields: [ownerName], references: [name])
+  ownerName String?
   key       String
-  value     String @unique
+  value     String  @unique
 }
