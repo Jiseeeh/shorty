@@ -71,7 +71,7 @@ const Form: React.FC = () => {
         <button className="btn hover:btn-success" type="submit">
           <IconChecks />
         </button>
-        <button className="btn hover:btn-info" onClick={onPaste}>
+        <button className="btn hover:btn-info" type="button" onClick={onPaste}>
           <IconClipboardCopy />
         </button>
         <button className="btn hover:btn-error" onClick={onDelete}>
