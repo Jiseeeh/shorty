@@ -27,13 +27,19 @@ const Form: React.FC = () => {
   };
 
   const onPaste = async () => {
-    setFormValue(await navigator.clipboard.readText());
+    const userClipboardContent = await navigator.clipboard.readText();
+    if (formValue === userClipboardContent) {
+      toast.error("Done pasting!");
+      return;
+    }
+
+    setFormValue(userClipboardContent);
     toast.success("Paste Success!");
   };
 
   const onDelete = () => {
     if (!formValue) {
-      toast.error("Input is already empty!");
+      toast.error("Input field is already empty!");
       return;
     }
 
