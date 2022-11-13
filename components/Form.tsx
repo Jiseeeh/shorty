@@ -1,14 +1,25 @@
 import React, { useState } from "react";
 import { IconChecks, IconClipboardCopy, IconTrash } from "@tabler/icons";
+import axios from "axios";
 
 import randomize from "../helper/randomize";
+import syncSessionStorage from "../helper/syncSessionStorage";
 
 const Form: React.FC = () => {
   const [formValue, setFormValue] = useState<string>("");
 
-  const onFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!formValue) return;
+
+    const value = randomize();
+    const data = {
+      key: formValue,
+      value,
+    };
+
+    const response = await axios.post("/api/create", data);
+    syncSessionStorage(response.data);
   };
 
   const onPaste = async () => {
