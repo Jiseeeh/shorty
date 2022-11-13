@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { IconChecks, IconClipboardCopy, IconTrash } from "@tabler/icons";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 import randomize from "../helper/randomize";
 import syncSessionStorage from "../helper/syncSessionStorage";
@@ -20,14 +21,24 @@ const Form: React.FC = () => {
 
     const response = await axios.post("/api/create", data);
     syncSessionStorage(response.data);
+
+    await navigator.clipboard.writeText(response.data.shorty);
+    toast.success("Written to your clipboard!");
   };
 
   const onPaste = async () => {
     setFormValue(await navigator.clipboard.readText());
+    toast.success("Paste Success!");
   };
 
   const onDelete = () => {
+    if (!formValue) {
+      toast.error("Input is already empty!");
+      return;
+    }
+
     setFormValue("");
+    toast.success("Delete Success!");
   };
 
   const onSaveShorties = () => {};
