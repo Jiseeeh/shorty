@@ -8,15 +8,14 @@ export default async function create(
   res: NextApiResponse
 ) {
   const { key, value } = req.body;
+  const shorty = `${process.env.FRONTEND_URL}/${value}`;
 
   const createdShorty = await prisma.shorty.create({
     data: {
       key,
-      value,
+      value: shorty,
     },
   });
 
-  const shorty = `${process.env.FRONTEND_URL}/${value}`;
-
-  res.json({ id: createdShorty.id, value, shorty });
+  res.json({ id: createdShorty.id, key, shorty });
 }
