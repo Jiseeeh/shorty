@@ -61,6 +61,7 @@ const Form: React.FC = () => {
         <input
           type="text"
           placeholder="https://nextjs-setup.jiseeeh.vercel.app/"
+          autoFocus
           value={formValue}
           onChange={onInputChange}
           className="input input-bordered"
