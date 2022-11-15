@@ -1,5 +1,12 @@
 import IShorty from "../interfaces/IShorty";
 
+/**
+ * It takes in a data object and a mode string, and then it either adds the data object to the session
+ * storage or deletes it from the session storage.
+ * @param {IShorty} data - IShorty - this is the data that you want to add to the session storage
+ * @param {"add" | "delete"} mode - "add" | "delete"
+ * @returns Nothing.
+ */
 export default function syncSessionStorage(
   data: IShorty,
   mode: "add" | "delete"
