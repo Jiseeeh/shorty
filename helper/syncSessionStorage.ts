@@ -1,11 +1,19 @@
-export default function syncSessionStorage(data: object) {
-  let userSessionStorage: object[] = [];
+import IShorty from "../interfaces/IShorty";
+
+export default function syncSessionStorage(
+  data: IShorty,
+  mode: "add" | "delete"
+) {
+  let userSessionStorage: IShorty[] = [];
 
   const storage = sessionStorage.getItem("shorties");
 
   if (storage !== null) {
-    let parsed = JSON.parse(storage);
-    parsed.push(data);
+    let parsed: IShorty[] = JSON.parse(storage);
+
+    if (mode === "add") parsed.push(data);
+    else parsed = parsed.filter((shorty) => shorty.id !== data.id);
+
     sessionStorage.setItem("shorties", JSON.stringify(parsed));
     return;
   }
