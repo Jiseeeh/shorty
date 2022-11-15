@@ -7,6 +7,8 @@ import { IconTrash } from "@tabler/icons";
 const ShortiesTable: React.FC = () => {
   const [shorties, setShorties] = useState<IShorty[]>([]);
 
+  const onSaveShorties = () => {};
+
   useEffect(() => {
     const userSessionStorage = sessionStorage.getItem("shorties");
 
@@ -82,7 +84,11 @@ const ShortiesTable: React.FC = () => {
               <th>Name</th>
               <th className="text-center">Long Link</th>
               <th className="text-center">Shorty</th>
-              <th></th>
+              <th>
+                <button className="btn" onClick={onSaveShorties}>
+                  Save my Shorties
+                </button>
+              </th>
             </tr>
           </tfoot>
         )}
