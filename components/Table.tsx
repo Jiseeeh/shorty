@@ -64,7 +64,7 @@ const ShortiesTable: React.FC<ShortiesTableProps> = (props) => {
               </label>
             </th>
             <th>Name</th>
-            <th>Long Link</th>
+            <th className="text-center">Long Link</th>
             <th className="text-center">Shorty</th>
             <th>
               <button className="btn btn-error">Delete</button>
@@ -78,8 +78,8 @@ const ShortiesTable: React.FC<ShortiesTableProps> = (props) => {
             <tr>
               <th></th>
               <th>Name</th>
-              <th>Long Link</th>
-              <th>Shorty</th>
+              <th className="text-center">Long Link</th>
+              <th className="text-center">Shorty</th>
               <th></th>
             </tr>
           </tfoot>
