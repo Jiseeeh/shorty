@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Link from "next/link";
 
 interface UserFormProps {
   formType: "Login" | "Sign up";
@@ -56,6 +57,12 @@ const UserForm: React.FC<UserFormProps> = (props) => {
         minLength={inputLength.min}
         maxLength={inputLength.max}
       />
+      <Link
+        className="mb-2 link link-accent"
+        href={props.formType === "Sign up" ? "/login" : "/signUp"}
+      >
+        {props.formType === "Sign up" ? "Login" : "Sign up"}
+      </Link>
       <button className="btn hover:btn-success">{props.formType}</button>
     </form>
   );
