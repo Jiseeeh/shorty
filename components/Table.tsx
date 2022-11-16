@@ -1,13 +1,29 @@
 import React, { useState, useEffect } from "react";
+import { IconTrash } from "@tabler/icons";
+import { useRouter } from "next/router";
+import { toast } from "react-hot-toast";
 
 import IShorty from "../interfaces/IShorty";
 import syncSessionStorage from "../helper/syncSessionStorage";
-import { IconTrash } from "@tabler/icons";
 
 const ShortiesTable: React.FC = () => {
   const [shorties, setShorties] = useState<IShorty[]>([]);
+  const router = useRouter();
 
-  const onSaveShorties = () => {};
+  const onSaveShorties = () => {
+    const userSessionInfo = sessionStorage.getItem("userInfo");
+
+    if (userSessionInfo !== null) {
+      // save session shorties to user info
+      // update user to db
+      return;
+    }
+
+    toast.error("Please sign-up or login first!");
+
+    // redirect to sign up
+    router.push("/signUp");
+  };
 
   useEffect(() => {
     const userSessionStorage = sessionStorage.getItem("shorties");
@@ -17,6 +33,7 @@ const ShortiesTable: React.FC = () => {
       // only set shorties if it's empty
       if (shorties.length === 0) setShorties(JSON.parse(userSessionStorage));
     }
+    // if has account, fetch shorties there;
   }, [shorties]);
 
   return (
