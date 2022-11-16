@@ -56,7 +56,7 @@ const ShortiesTable: React.FC = () => {
               </td>
               <td>{data.key}</td>
               <td>{data.shorty}</td>
-              <th>
+              <th className="text-center">
                 <button
                   className="btn btn-ghost btn-xs"
                   onClick={() => {
