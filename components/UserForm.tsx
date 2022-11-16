@@ -38,7 +38,7 @@ const UserForm: React.FC<UserFormProps> = (props) => {
       </label>
       <input
         type="text"
-        placeholder="Jiseeeh"
+        placeholder="Jiseeeh6"
         className="input input-bordered w-full max-w-xs"
         value={username}
         onChange={onUsernameChange}
