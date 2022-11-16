@@ -28,7 +28,7 @@ const ShortiesTable: React.FC = () => {
             <th>Name</th>
             <th className="text-center">Long Link</th>
             <th className="text-center">Shorty</th>
-            <th className="grid justify-center ">
+            <th className="text-center">
               <button className="btn btn-error">Delete All</button>
             </th>
           </tr>
