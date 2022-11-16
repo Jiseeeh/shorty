@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import Head from "next/head";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/router";
 
@@ -33,6 +34,13 @@ const SignUp: React.FC = () => {
 
   return (
     <>
+      <Head>
+        <title>Sign up</title>
+        <meta
+          name="description"
+          content="Sign up page for shorty. URL shortener free sign up."
+        />
+      </Head>
       <UserForm formType="Sign up" handleSubmit={handleSubmit} />
     </>
   );

@@ -1,4 +1,5 @@
 import React from "react";
+import Head from "next/head";
 
 import UserForm from "../components/UserForm";
 
@@ -15,6 +16,10 @@ const Login: React.FC = () => {
 
   return (
     <>
+      <Head>
+        <title>Login</title>
+        <meta name="description" content="Login page for shorty." />
+      </Head>
       <UserForm formType="Login" handleSubmit={handleSubmit} />
     </>
   );
