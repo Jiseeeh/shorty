@@ -25,7 +25,6 @@ const SignUp: React.FC = () => {
     if (response.data.success) {
       toast.success("Sign up success!");
       router.push("/login");
-      sessionStorage.setItem("userInfo", JSON.stringify(response.data.user));
       return;
     }
 
