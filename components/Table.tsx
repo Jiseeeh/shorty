@@ -25,6 +25,15 @@ const ShortiesTable: React.FC = () => {
     router.push("/signUp");
   };
 
+  const onDeleteAllShorties = () => {
+    if (shorties.length === 0) {
+      toast.error("You do not have any shorty!");
+      return;
+    }
+    sessionStorage.removeItem("shorties");
+    setShorties([]);
+  };
+
   useEffect(() => {
     const userSessionStorage = sessionStorage.getItem("shorties");
 
@@ -46,7 +55,9 @@ const ShortiesTable: React.FC = () => {
             <th className="text-center">Long Link</th>
             <th className="text-center">Shorty</th>
             <th className="text-center">
-              <button className="btn btn-error">Delete All</button>
+              <button className="btn btn-error" onClick={onDeleteAllShorties}>
+                Delete All
+              </button>
             </th>
           </tr>
         </thead>
