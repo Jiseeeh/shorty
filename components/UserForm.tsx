@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
+
+import AlreadyLoggedIn from "./AlreadyLoggedIn";
 
 interface UserFormProps {
   formType: "Login" | "Sign up";
@@ -13,6 +15,7 @@ interface UserFormProps {
 const UserForm: React.FC<UserFormProps> = (props) => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const inputLength = {
     min: 8,
     max: 12,
@@ -25,6 +28,13 @@ const UserForm: React.FC<UserFormProps> = (props) => {
     setPassword(e.target.value);
   };
 
+  useEffect(() => {
+    const userInfo = sessionStorage.getItem("userInfo");
+
+    if (userInfo) setIsLoggedIn(true);
+  }, [isLoggedIn]);
+
+  if (isLoggedIn) return <AlreadyLoggedIn />;
   return (
     <form
       className="form-control  max-w-xs md:w-full"
