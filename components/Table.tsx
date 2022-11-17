@@ -83,7 +83,7 @@ const ShortiesTable: React.FC = () => {
                 </article>
               </td>
               <td className="max-w-xs overflow-x-scroll">{data.key}</td>
-              <td>{data.shorty}</td>
+              <td>{data.value}</td>
               <th className="text-center">
                 <button
                   className="btn btn-ghost btn-xs"

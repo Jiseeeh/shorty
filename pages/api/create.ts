@@ -16,5 +16,5 @@ export default async function create(
     },
   });
 
-  res.json({ id: createdShorty.id, key, shorty });
+  res.json({ id: createdShorty.id, key, value:shorty });
 }

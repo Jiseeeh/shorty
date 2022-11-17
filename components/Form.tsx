@@ -22,7 +22,7 @@ const Form: React.FC = () => {
     const response = await axios.post("/api/create", data);
     syncSessionStorage(response.data, "add");
 
-    await navigator.clipboard.writeText(response.data.shorty);
+    await navigator.clipboard.writeText(response.data.value);
     toast.success("Written to your clipboard!");
   };
 
