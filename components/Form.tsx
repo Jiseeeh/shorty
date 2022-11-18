@@ -11,16 +11,18 @@ const Form: React.FC = () => {
 
   const onFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!formValue) return;
 
+    const userSessionInfo = sessionStorage.getItem("shorties");
+    if (!formValue) return;
+    if (userSessionInfo === null) return;
     const value = randomize();
     const data = {
       key: formValue,
       value,
+      userId: JSON.parse(userSessionInfo).id,
     };
 
     const response = await axios.post("/api/create", data);
-    syncSessionStorage(response.data, "add");
 
     await navigator.clipboard.writeText(response.data.value);
     toast.success("Written to your clipboard!");
