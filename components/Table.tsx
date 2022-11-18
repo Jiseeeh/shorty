@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { IconTrash } from "@tabler/icons";
 import { toast } from "react-hot-toast";
+import axios from "axios";
 
 import IShorty from "../interfaces/IShorty";
 import syncSessionStorage from "../helper/syncSessionStorage";
@@ -17,16 +18,22 @@ const ShortiesTable: React.FC = () => {
     setShorties([]);
   };
 
-  useEffect(() => {
-    const userSessionStorage = sessionStorage.getItem("shorties");
+  const fetchUserShorties = async () => {
+    // try set to local array to prevent too much requests
+    const userSessionInfo = sessionStorage.getItem("userInfo");
+    if (userSessionInfo === null) return;
 
-    if (userSessionStorage === "[]") return;
-    if (userSessionStorage !== null) {
-      // only set shorties if it's empty
-      if (shorties.length === 0) setShorties(JSON.parse(userSessionStorage));
-    }
-    // if has account, fetch shorties there;
-  }, [shorties]);
+    const response = await axios.get("/api/shorties", {
+      params: {
+        id: JSON.parse(userSessionInfo).id,
+      },
+    });
+    setShorties(response.data.shorties);
+  };
+
+  useEffect(() => {
+    fetchUserShorties();
+  }, []);
 
   return (
     <div className="p-5 overflow-x-auto w-full">
