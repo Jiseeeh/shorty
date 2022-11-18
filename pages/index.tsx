@@ -1,8 +1,19 @@
 import Head from "next/head";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
+import { toast } from "react-hot-toast";
 
 import Form from "../components/Form";
 
 export default function Home() {
+  const router = useRouter();
+
+  useEffect(() => {
+    const userSessionInfo = sessionStorage.getItem("userInfo");
+    if (userSessionInfo === null) {
+      router.push("/signUp");
+    }
+  }, []);
   return (
     <main>
       <Head>
