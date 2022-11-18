@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { IconTrash } from "@tabler/icons";
-import { useRouter } from "next/router";
 import { toast } from "react-hot-toast";
 
 import IShorty from "../interfaces/IShorty";
@@ -8,22 +7,6 @@ import syncSessionStorage from "../helper/syncSessionStorage";
 
 const ShortiesTable: React.FC = () => {
   const [shorties, setShorties] = useState<IShorty[]>([]);
-  const router = useRouter();
-
-  const onSaveShorties = () => {
-    const userSessionInfo = sessionStorage.getItem("userInfo");
-
-    if (userSessionInfo !== null) {
-      // save session shorties to user info
-      // update user to db
-      return;
-    }
-
-    toast.error("Please sign-up or login first!");
-
-    // redirect to sign up
-    router.push("/signUp");
-  };
 
   const onDeleteAllShorties = () => {
     if (shorties.length === 0) {
@@ -112,11 +95,7 @@ const ShortiesTable: React.FC = () => {
               <th>Name</th>
               <th className="text-center">Long Link</th>
               <th className="text-center">Shorty</th>
-              <th>
-                <button className="btn" onClick={onSaveShorties}>
-                  Save my Shorties
-                </button>
-              </th>
+              <th></th>
             </tr>
           </tfoot>
         )}
