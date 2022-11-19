@@ -4,7 +4,6 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 import randomize from "../helper/randomize";
-import syncSessionStorage from "../helper/syncSessionStorage";
 
 const Form: React.FC = () => {
   const [formValue, setFormValue] = useState<string>("");
