@@ -9,11 +9,26 @@ const ShortiesTable: React.FC = () => {
   const [shorties, setShorties] = useState<IShorty[]>([]);
 
   const onDeleteAllShorties = () => {
+    const userInfo = sessionStorage.getItem("userInfo");
+
     if (shorties.length === 0) {
       toast.error("You do not have any shorty!");
       return;
     }
-    sessionStorage.removeItem("shorties");
+    if (userInfo === null) return;
+
+    const ownerName = JSON.parse(userInfo).name;
+
+    const response = axios.delete(
+      `/api/delete/shorties?ownerName=${ownerName}`
+    );
+
+    toast.promise(response, {
+      error: "Something went wrong!",
+      loading: "Syncing!",
+      success: "Synced!",
+    });
+
     setShorties([]);
   };
 
