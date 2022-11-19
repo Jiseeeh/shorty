@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { IconTrash } from "@tabler/icons";
 import { toast } from "react-hot-toast";
-import axios from "axios";
 
 import IShorty from "../interfaces/IShorty";
-import syncSessionStorage from "../helper/syncSessionStorage";
 
 const ShortiesTable: React.FC = () => {
   const [shorties, setShorties] = useState<IShorty[]>([]);
@@ -19,7 +18,6 @@ const ShortiesTable: React.FC = () => {
   };
 
   const fetchUserShorties = async () => {
-    // try set to local array to prevent too much requests
     const userSessionInfo = sessionStorage.getItem("userInfo");
     if (userSessionInfo === null) return;
 
@@ -79,14 +77,15 @@ const ShortiesTable: React.FC = () => {
                   className="btn btn-ghost btn-xs"
                   onClick={() => {
                     setShorties((prevShorties) =>
-                      prevShorties.filter((shorty) => {
-                        if (shorty.id === data.id) {
-                          syncSessionStorage(shorty, "delete");
-                          return false;
-                        }
-                        return true;
-                      })
+                      prevShorties.filter((shorty) => shorty.id !== data.id)
                     );
+
+                    const response = axios.delete(`/api/delete/${data.id}`);
+                    toast.promise(response, {
+                      error: "Something went wrong!",
+                      loading: "Syncing!",
+                      success: "Synced!",
+                    });
                   }}
                 >
                   <IconTrash />
