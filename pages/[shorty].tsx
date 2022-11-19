@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-
+import Head from "next/head";
 import React from "react";
 
 const Shorty: React.FC = () => {
@@ -26,13 +26,18 @@ const Shorty: React.FC = () => {
   }, [router]);
 
   return (
-    <section className="text-center">
-      <h1 className="font-bold md:text-xl">
-        {isLoading
-          ? "REDIRECTING YOU TO YOUR LINK..."
-          : "SORRY! THAT LINK MUST HAVE BEEN DELETED OR IT DOESN'T EXIST"}
-      </h1>
-    </section>
+    <>
+      <Head>
+        <title>Shorty</title>
+      </Head>
+      <section className="text-center">
+        <h1 className="font-bold md:text-xl">
+          {isLoading
+            ? "REDIRECTING YOU TO YOUR LINK..."
+            : "SORRY! THAT LINK MUST HAVE BEEN DELETED OR IT DOESN'T EXIST"}
+        </h1>
+      </section>
+    </>
   );
 };
 
