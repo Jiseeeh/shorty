@@ -12,7 +12,7 @@ const Form: React.FC = () => {
   const onFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const userSessionInfo = sessionStorage.getItem("shorties");
+    const userSessionInfo = sessionStorage.getItem("userInfo");
     if (!formValue) return;
     if (userSessionInfo === null) return;
     const value = randomize();
