@@ -11,13 +11,17 @@ const Form: React.FC = () => {
   const onFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    if (!formValue) {
+      toast.error("Input field is empty!");
+      return;
+    }
+
     const userSessionInfo = sessionStorage.getItem("userInfo");
-    if (!formValue) return;
     if (userSessionInfo === null) return;
-    const value = randomize();
+
     const data = {
       key: formValue,
-      value,
+      value: randomize(),
       userId: JSON.parse(userSessionInfo).id,
     };
 
