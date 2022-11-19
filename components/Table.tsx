@@ -7,10 +7,9 @@ import IShorty from "../interfaces/IShorty";
 
 const ShortiesTable: React.FC = () => {
   const [shorties, setShorties] = useState<IShorty[]>([]);
+  const userInfo = sessionStorage.getItem("userInfo");
 
   const onDeleteAllShorties = () => {
-    const userInfo = sessionStorage.getItem("userInfo");
-
     if (shorties.length === 0) {
       toast.error("You do not have any shorty!");
       return;
@@ -78,7 +77,9 @@ const ShortiesTable: React.FC = () => {
                     </section>
                   </section>
                   <article>
-                    <section className="font-bold">Hart Hagerty</section>
+                    <section className="font-bold">
+                      {userInfo && JSON.parse(userInfo).name}
+                    </section>
                     <section className="text-sm opacity-50">
                       Mount Myōboku
                     </section>
