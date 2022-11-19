@@ -87,7 +87,15 @@ const ShortiesTable: React.FC = () => {
                 </article>
               </td>
               <td className="max-w-xs overflow-x-auto">{data.key}</td>
-              <td>{data.value}</td>
+              <td
+                className="cursor-pointer transition-all delay-50 hover:bg-gray-300"
+                onClick={async () => {
+                  await navigator.clipboard.writeText(data.value);
+                  toast.success("Copied Successfully!");
+                }}
+              >
+                {data.value}
+              </td>
               <th className="text-center">
                 <button
                   className="btn btn-ghost btn-xs"
