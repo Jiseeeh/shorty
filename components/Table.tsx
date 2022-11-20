@@ -4,10 +4,15 @@ import { IconTrash } from "@tabler/icons";
 import { toast } from "react-hot-toast";
 
 import IShorty from "../interfaces/IShorty";
+import Pagination from "./Pagination";
 
 const ShortiesTable: React.FC = () => {
   const [shorties, setShorties] = useState<IShorty[]>([]);
   const userInfo = sessionStorage.getItem("userInfo");
+  const [shortyPerPage, setShortyPerPage] = useState(5);
+  const [currentPage, setCurrentPage] = useState(1);
+  const lastPostIndex = currentPage * shortyPerPage;
+  const firstPostIndex = lastPostIndex - shortyPerPage;
 
   const onDeleteAllShorties = () => {
     if (shorties.length === 0) {
@@ -64,7 +69,7 @@ const ShortiesTable: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {shorties.map((data) => (
+          {shorties.slice(firstPostIndex, lastPostIndex).map((data) => (
             <tr key={data.id}>
               <td>
                 <article className="flex items-center space-x-3">
@@ -125,7 +130,14 @@ const ShortiesTable: React.FC = () => {
               <th>Name</th>
               <th className="text-center">Long Link</th>
               <th className="text-center">Shorty</th>
-              <th></th>
+              <th>
+                <Pagination
+                  currentPage={currentPage}
+                  setCurrentPage={setCurrentPage}
+                  shortyPerPage={shortyPerPage}
+                  totalShorties={shorties.length}
+                />
+              </th>
             </tr>
           </tfoot>
         )}
