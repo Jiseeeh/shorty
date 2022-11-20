@@ -23,10 +23,11 @@ const Pagination: React.FC<PaginationProps> = (props) => {
 
   const maxButtonPage = pages.length / buttonsPerPage;
   const minButtonPage = 0;
+  const minBtnPageToPaginate = buttonsPerPage * 2;
 
   return (
     <section className="btn-group">
-      {pages.length > buttonsPerPage && (
+      {pages.length >= minBtnPageToPaginate && (
         <button
           className="btn"
           onClick={() => {
@@ -52,7 +53,7 @@ const Pagination: React.FC<PaginationProps> = (props) => {
             {pageNumber}
           </button>
         ))}
-      {pages.length > buttonsPerPage && (
+      {pages.length >= minBtnPageToPaginate && (
         <button
           className="btn"
           onClick={() => {
