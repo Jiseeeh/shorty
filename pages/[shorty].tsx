@@ -9,7 +9,6 @@ const Shorty: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    console.log("ran");
     (async function () {
       const response = await axios.get(`/api/get-shortyKey`, {
         params: {
