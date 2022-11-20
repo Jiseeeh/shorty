@@ -10,9 +10,10 @@ const Shorty: React.FC = () => {
 
   useEffect(() => {
     (async function () {
+      const query = router.query.shorty;
       const response = await axios.get(`/api/get-shortyKey`, {
         params: {
-          shortyValue: router.query.shorty,
+          shortyValue: query,
         },
       });
 
@@ -20,7 +21,8 @@ const Shorty: React.FC = () => {
         router.push(`${response.data.shorty.key}`);
         return;
       }
-      setIsLoading(false);
+      // only set if the query is truthy to prevent immediate change of text below
+      if (query) setIsLoading(false);
     })();
   }, [router]);
 
