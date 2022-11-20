@@ -65,6 +65,20 @@ const ShortiesTable: React.FC = () => {
               <button className="btn btn-error" onClick={onDeleteAllShorties}>
                 Delete All
               </button>
+              <section className="tooltip" data-tip="Shorties per page">
+                <select
+                  className="ml-3 select max-w-xs"
+                  onChange={(e) => {
+                    if (currentPage !== 1) setCurrentPage(1);
+                    setShortyPerPage(Number(e.target.value));
+                  }}
+                >
+                  <option selected>5</option>
+                  <option>10</option>
+                  <option>15</option>
+                  <option>20</option>
+                </select>
+              </section>
             </th>
           </tr>
         </thead>
