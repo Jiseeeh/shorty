@@ -78,7 +78,11 @@ const Form: React.FC = () => {
         <button className="btn hover:btn-info" type="button" onClick={onPaste}>
           <IconClipboardCopy />
         </button>
-        <button className="btn hover:btn-error" onClick={onDelete}>
+        <button
+          className="btn hover:btn-error"
+          type="button"
+          onClick={onDelete}
+        >
           <IconTrash />
         </button>
       </section>
