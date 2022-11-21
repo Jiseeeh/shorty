@@ -15,6 +15,11 @@ const SignUp: React.FC = () => {
   ) => {
     e.preventDefault();
 
+    if (!username && !password) {
+      toast.error("Please input properly!");
+      return;
+    }
+
     const userInfo = {
       name: username,
       password,
