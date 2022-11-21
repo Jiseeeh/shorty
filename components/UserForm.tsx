@@ -5,6 +5,7 @@ import AlreadyLoggedIn from "./AlreadyLoggedIn";
 
 interface UserFormProps {
   formType: "Login" | "Sign up";
+  isLoading: boolean;
   handleSubmit: (
     e: React.FormEvent<HTMLFormElement>,
     username: string,
@@ -73,7 +74,13 @@ const UserForm: React.FC<UserFormProps> = (props) => {
       >
         {props.formType === "Sign up" ? "Login" : "Sign up"}
       </Link>
-      <button className="btn hover:btn-success">{props.formType}</button>
+      <button
+        className={`btn hover:btn-success ${
+          props.isLoading ? "btn-disabled" : ""
+        }`}
+      >
+        {props.formType}
+      </button>
     </form>
   );
 };
