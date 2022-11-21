@@ -81,8 +81,9 @@ const ShortiesTable: React.FC = () => {
                     if (currentPage !== 1) setCurrentPage(1);
                     setShortyPerPage(Number(e.target.value));
                   }}
+                  defaultValue={5}
                 >
-                  <option selected>5</option>
+                  <option>5</option>
                   <option>10</option>
                   <option>15</option>
                   <option>20</option>
