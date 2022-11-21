@@ -1,19 +1,20 @@
 import Head from "next/head";
-import { useEffect } from "react";
-import { useRouter } from "next/router";
-import { toast } from "react-hot-toast";
+import { useState, useEffect } from "react";
 
 import Form from "../components/Form";
+import NotLoggedIn from "../components/NotLoggedIn";
 
 export default function Home() {
-  const router = useRouter();
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   useEffect(() => {
     const userSessionInfo = sessionStorage.getItem("userInfo");
-    if (userSessionInfo === null) {
-      router.push("/signUp");
+    if (userSessionInfo !== null) {
+      setIsLoggedIn(true);
     }
   }, []);
+
+  if (!isLoggedIn) return <NotLoggedIn />;
   return (
     <main>
       <Head>
