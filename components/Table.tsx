@@ -153,7 +153,7 @@ const ShortiesTable: React.FC = () => {
               <th>Name</th>
               <th className="text-center">Long Link</th>
               <th className="text-center">Shorty</th>
-              <th>
+              <th className="text-center">
                 <Pagination
                   currentPage={currentPage}
                   setCurrentPage={setCurrentPage}
