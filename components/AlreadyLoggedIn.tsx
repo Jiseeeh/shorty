@@ -16,7 +16,7 @@ const AlreadyLoggedIn: React.FC = () => {
 
   return (
     <section className="flex flex-col gap-3">
-      <h1>You are already logged in!</h1>
+      <h1 className="font-bold">You are already logged in!</h1>
       <Link className="link link-accent" href="/">
         Back to home
       </Link>
