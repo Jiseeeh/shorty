@@ -7,7 +7,7 @@ const Shorties: React.FC = () => {
   return (
     <>
       <Head>
-        <title>My Shorties</title>
+        <title>Your Shorties</title>
         <meta name="description" content="User shorties" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
