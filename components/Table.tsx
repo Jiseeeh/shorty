@@ -110,7 +110,7 @@ const ShortiesTable: React.FC = () => {
                       {userInfo && JSON.parse(userInfo).name}
                     </section>
                     <section className="text-sm opacity-50">
-                      Mount Myōboku
+                      Somewhere
                     </section>
                   </article>
                 </article>
