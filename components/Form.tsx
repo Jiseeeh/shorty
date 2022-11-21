@@ -7,6 +7,7 @@ import randomize from "../helper/randomize";
 
 const Form: React.FC = () => {
   const [formValue, setFormValue] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const onFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -19,6 +20,9 @@ const Form: React.FC = () => {
     const userSessionInfo = sessionStorage.getItem("userInfo");
     if (userSessionInfo === null) return;
 
+    setIsLoading(true);
+    const toastId = toast.loading("Creating your shorty...");
+
     const data = {
       key: formValue,
       value: randomize(),
@@ -26,6 +30,9 @@ const Form: React.FC = () => {
     };
 
     const response = await axios.post("/api/create", data);
+
+    setIsLoading(false);
+    toast.dismiss(toastId);
 
     await navigator.clipboard.writeText(response.data.value);
     toast.success("Written to your clipboard!");
@@ -77,7 +84,10 @@ const Form: React.FC = () => {
         />
       </label>
       <section className="my-3 flex justify-around">
-        <button className="btn hover:btn-success" type="submit">
+        <button
+          className={`btn hover:btn-success ${isLoading ? "btn-disabled" : ""}`}
+          type="submit"
+        >
           <IconChecks />
         </button>
         <button className="btn hover:btn-info" type="button" onClick={onPaste}>
