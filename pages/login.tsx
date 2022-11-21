@@ -25,9 +25,12 @@ const Login: React.FC = () => {
       password,
     };
 
+    const toastId = toast.loading("Logging you in...");
+
     const response = await axios.post("/api/login", userInfo);
 
     if (response.data.success) {
+      toast.dismiss(toastId);
       toast.success("Login success!");
 
       sessionStorage.setItem("userInfo", JSON.stringify(response.data.user));

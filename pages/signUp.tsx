@@ -25,10 +25,14 @@ const SignUp: React.FC = () => {
       password,
     };
 
+    const toastId = toast.loading("Signing you up...");
+
     const response = await axios.post("/api/sign-up", userInfo);
 
     if (response.data.success) {
+      toast.dismiss(toastId);
       toast.success("Sign up success!");
+
       router.push("/login");
       return;
     }
