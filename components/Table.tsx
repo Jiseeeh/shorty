@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { IconTrash } from "@tabler/icons";
 import { toast } from "react-hot-toast";
+import Image from "next/image";
 
 import IShorty from "../interfaces/IShorty";
 import Pagination from "./Pagination";
+import pfp from "../public/pfp.webp"
 
 const ShortiesTable: React.FC = () => {
   const [shorties, setShorties] = useState<IShorty[]>([]);
@@ -99,9 +101,10 @@ const ShortiesTable: React.FC = () => {
                 <article className="flex items-center space-x-3">
                   <section className="avatar">
                     <section className="mask mask-squircle w-12 h-12">
-                      <img
-                        src="https://i.pinimg.com/736x/3a/64/69/3a6469083e633a02f132c2dea8538e8f.jpg"
+                      <Image
+                        src={pfp}
                         alt="Anime character sleeping"
+                        priority
                       />
                     </section>
                   </section>
