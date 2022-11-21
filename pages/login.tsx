@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -8,6 +8,8 @@ import UserForm from "../components/UserForm";
 
 const Login: React.FC = () => {
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const handleSubmit = async (
     e: React.FormEvent<HTMLFormElement>,
     username: string,
@@ -25,11 +27,13 @@ const Login: React.FC = () => {
       password,
     };
 
+    setIsLoading(true);
     const toastId = toast.loading("Logging you in...");
 
     const response = await axios.post("/api/login", userInfo);
 
     if (response.data.success) {
+      setIsLoading(false);
       toast.dismiss(toastId);
       toast.success("Login success!");
 
@@ -39,6 +43,8 @@ const Login: React.FC = () => {
       return;
     }
 
+    setIsLoading(false);
+    toast.dismiss(toastId);
     toast.error("Wrong credentials!");
   };
 
@@ -48,7 +54,11 @@ const Login: React.FC = () => {
         <title>Login</title>
         <meta name="description" content="Login page for shorty." />
       </Head>
-      <UserForm formType="Login" handleSubmit={handleSubmit} />
+      <UserForm
+        formType="Login"
+        handleSubmit={handleSubmit}
+        isLoading={isLoading}
+      />
     </>
   );
 };
