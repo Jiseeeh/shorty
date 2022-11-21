@@ -5,6 +5,7 @@ import { toast } from "react-hot-toast";
 import Image from "next/image";
 
 import IShorty from "../interfaces/IShorty";
+import IUser from "../interfaces/IUser";
 import Pagination from "./Pagination";
 import pfp from "../public/pfp.webp";
 
@@ -12,7 +13,7 @@ const ShortiesTable: React.FC = () => {
   const [shorties, setShorties] = useState<IShorty[]>([]);
   const [shortyPerPage, setShortyPerPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
-  const userInfo = sessionStorage.getItem("userInfo");
+  const [userInfo, setUserInfo] = useState<IUser | null>(null);
   const lastPostIndex = currentPage * shortyPerPage;
   const firstPostIndex = lastPostIndex - shortyPerPage;
 
@@ -23,7 +24,7 @@ const ShortiesTable: React.FC = () => {
     }
     if (userInfo === null) return;
 
-    const ownerName = JSON.parse(userInfo).name;
+    const ownerName = userInfo.name;
 
     const response = axios.delete(
       `/api/delete/shorties?ownerName=${ownerName}`
@@ -51,6 +52,9 @@ const ShortiesTable: React.FC = () => {
   };
 
   useEffect(() => {
+    const userInfo = sessionStorage.getItem("userInfo");
+    if (userInfo !== null) setUserInfo(JSON.parse(userInfo));
+
     fetchUserShorties();
   }, []);
 
@@ -110,7 +114,7 @@ const ShortiesTable: React.FC = () => {
                   </section>
                   <article>
                     <section className="font-bold">
-                      {userInfo && JSON.parse(userInfo).name}
+                      {userInfo && userInfo.name}
                     </section>
                     <section className="text-sm opacity-50">Somewhere</section>
                   </article>
