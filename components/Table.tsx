@@ -6,7 +6,7 @@ import Image from "next/image";
 
 import IShorty from "../interfaces/IShorty";
 import Pagination from "./Pagination";
-import pfp from "../public/pfp.webp"
+import pfp from "../public/pfp.webp";
 
 const ShortiesTable: React.FC = () => {
   const [shorties, setShorties] = useState<IShorty[]>([]);
@@ -61,7 +61,7 @@ const ShortiesTable: React.FC = () => {
 
     if (paginatedShorties.length === 0)
       setCurrentPage((prevPage) => prevPage - 1);
-  }, [paginatedShorties]);
+  }, [paginatedShorties, shorties.length]);
 
   return (
     <div className="p-5 overflow-x-auto w-full">
@@ -112,9 +112,7 @@ const ShortiesTable: React.FC = () => {
                     <section className="font-bold">
                       {userInfo && JSON.parse(userInfo).name}
                     </section>
-                    <section className="text-sm opacity-50">
-                      Somewhere
-                    </section>
+                    <section className="text-sm opacity-50">Somewhere</section>
                   </article>
                 </article>
               </td>
