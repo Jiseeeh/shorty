@@ -8,9 +8,9 @@ import Pagination from "./Pagination";
 
 const ShortiesTable: React.FC = () => {
   const [shorties, setShorties] = useState<IShorty[]>([]);
-  const userInfo = sessionStorage.getItem("userInfo");
   const [shortyPerPage, setShortyPerPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
+  const userInfo = sessionStorage.getItem("userInfo");
   const lastPostIndex = currentPage * shortyPerPage;
   const firstPostIndex = lastPostIndex - shortyPerPage;
 
@@ -52,6 +52,15 @@ const ShortiesTable: React.FC = () => {
     fetchUserShorties();
   }, []);
 
+  const paginatedShorties = shorties.slice(firstPostIndex, lastPostIndex);
+
+  useEffect(() => {
+    if (shorties.length === 0) return;
+
+    if (paginatedShorties.length === 0)
+      setCurrentPage((prevPage) => prevPage - 1);
+  }, [paginatedShorties]);
+
   return (
     <div className="p-5 overflow-x-auto w-full">
       <table className="table w-full">
@@ -83,7 +92,7 @@ const ShortiesTable: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {shorties.slice(firstPostIndex, lastPostIndex).map((data) => (
+          {paginatedShorties.map((data) => (
             <tr key={data.id}>
               <td>
                 <article className="flex items-center space-x-3">
