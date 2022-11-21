@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import Head from "next/head";
 import { toast } from "react-hot-toast";
@@ -8,6 +8,8 @@ import UserForm from "../components/UserForm";
 
 const SignUp: React.FC = () => {
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const handleSubmit = async (
     e: React.FormEvent<HTMLFormElement>,
     username: string,
@@ -25,11 +27,13 @@ const SignUp: React.FC = () => {
       password,
     };
 
+    setIsLoading(true);
     const toastId = toast.loading("Signing you up...");
 
     const response = await axios.post("/api/sign-up", userInfo);
 
     if (response.data.success) {
+      setIsLoading(false);
       toast.dismiss(toastId);
       toast.success("Sign up success!");
 
@@ -37,6 +41,8 @@ const SignUp: React.FC = () => {
       return;
     }
 
+    setIsLoading(false);
+    toast.dismiss(toastId);
     toast.error("Username is already taken!");
   };
 
@@ -49,7 +55,11 @@ const SignUp: React.FC = () => {
           content="Sign up page for shorty. URL shortener free sign up."
         />
       </Head>
-      <UserForm formType="Sign up" handleSubmit={handleSubmit} />
+      <UserForm
+        formType="Sign up"
+        handleSubmit={handleSubmit}
+        isLoading={isLoading}
+      />
     </>
   );
 };
