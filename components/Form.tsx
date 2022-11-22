@@ -20,6 +20,11 @@ const Form: React.FC = () => {
     const userSessionInfo = sessionStorage.getItem("userInfo");
     if (userSessionInfo === null) return;
 
+    if (formValue.includes("shawtee.vercel.app")) {
+      toast.error("That is already a shorty.");
+      return;
+    }
+
     setIsLoading(true);
     const toastId = toast.loading("Creating your shorty...");
 
