@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { IconLayoutSidebarLeftExpand } from "@tabler/icons";
+import { IconBrandGithub } from "@tabler/icons";
 
 interface SidebarProps {
   children: React.ReactNode;
@@ -67,6 +68,12 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
               <Link href={item.path}>{item.body}</Link>
             </li>
           ))}
+          <li className="mt-auto font-bold text-center">A URL SHORTENER </li>
+          <li className="items-center">
+            <Link href="https://github.com/Jiseeeh/shorty">
+              <IconBrandGithub />
+            </Link>
+          </li>
         </ul>
       </section>
     </nav>
