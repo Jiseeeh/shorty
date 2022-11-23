@@ -8,6 +8,8 @@ const Shorty: React.FC = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
+  // effect for checking the user's shorty, if its key is valid, it will redirect there,
+  // otherwise it sets isLoading to false.
   useEffect(() => {
     (async function () {
       const query = router.query.shorty;

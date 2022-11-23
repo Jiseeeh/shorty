@@ -1,6 +1,12 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
 import { prisma } from "../../lib/prisma";
+
+/**
+ * It checks if the username is taken, if it is, it returns a message saying so. If it isn't, it
+ * creates a new user.
+ * @returns The user object is being returned.
+ */
 export default async function signUp(
   req: NextApiRequest,
   res: NextApiResponse

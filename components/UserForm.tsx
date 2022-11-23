@@ -29,6 +29,7 @@ const UserForm: React.FC<UserFormProps> = (props) => {
     setPassword(e.target.value);
   };
 
+  // effect for checking if the user is logged in.
   useEffect(() => {
     const userInfo = sessionStorage.getItem("userInfo");
 

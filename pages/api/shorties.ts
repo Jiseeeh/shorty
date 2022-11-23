@@ -2,6 +2,9 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 import { prisma } from "../../lib/prisma";
 
+/**
+ * It takes in a user id, finds the user in the database, and returns the user's shorties
+ */
 export default async function shorties(
   req: NextApiRequest,
   res: NextApiResponse

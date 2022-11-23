@@ -51,6 +51,7 @@ const ShortiesTable: React.FC = () => {
     setShorties(response.data.shorties);
   };
 
+  // on mount only effect for fetching shorties
   useEffect(() => {
     const userInfo = sessionStorage.getItem("userInfo");
     if (userInfo !== null) setUserInfo(JSON.parse(userInfo));
@@ -60,6 +61,8 @@ const ShortiesTable: React.FC = () => {
 
   const paginatedShorties = shorties.slice(firstPostIndex, lastPostIndex);
 
+  // effect for checking if the current page's shorties is equal to 0,
+  // if yes, decrement the current page number to show the other shorties.
   useEffect(() => {
     if (shorties.length === 0) return;
 
