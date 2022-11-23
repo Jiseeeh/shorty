@@ -71,7 +71,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
           <li className="mt-auto font-bold text-center">A URL SHORTENER </li>
           <li className="items-center">
             <Link href="https://github.com/Jiseeeh/shorty">
-              <IconBrandGithub />
+              <IconBrandGithub className="hover:text-error" />
             </Link>
           </li>
         </ul>
