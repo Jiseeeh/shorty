@@ -45,7 +45,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
         onChange={onToggleSidebar}
         checked={isOpen}
       />
-      <div className="drawer-content text-neutral flex flex-col items-center justify-center ">
+      <section className="drawer-content text-neutral flex flex-col items-center justify-center ">
         {/* main content */}
         {children}
         <label
@@ -54,7 +54,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
         >
           <IconLayoutSidebarLeftExpand size={40} />
         </label>
-      </div>
+      </section>
       <section className="drawer-side">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
         <ul className="menu p-4 w-80 text-base-100 bg-neutral ">
