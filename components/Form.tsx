@@ -45,6 +45,7 @@ const Form: React.FC = () => {
 
   const onPaste = async () => {
     const userClipboardContent = await navigator.clipboard.readText();
+
     if (!userClipboardContent) {
       toast.error("Your clipboard is empty!");
       return;
