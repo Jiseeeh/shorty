@@ -27,6 +27,7 @@ const Pagination: React.FC<PaginationProps> = (props) => {
 
   return (
     <section className="btn-group">
+      {/* Button to navigate to the previous button page */}
       {pages.length >= minBtnPageToPaginate && (
         <button
           className="btn"
@@ -53,6 +54,7 @@ const Pagination: React.FC<PaginationProps> = (props) => {
             {pageNumber}
           </button>
         ))}
+      {/* Button to navigate to the next button page */}
       {pages.length >= minBtnPageToPaginate && (
         <button
           className="btn"
