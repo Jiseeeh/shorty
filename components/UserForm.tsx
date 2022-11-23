@@ -36,6 +36,7 @@ const UserForm: React.FC<UserFormProps> = (props) => {
   }, [isLoggedIn]);
 
   if (isLoggedIn) return <AlreadyLoggedIn />;
+
   return (
     <form
       className="form-control  max-w-xs md:w-full"

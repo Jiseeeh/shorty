@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import Link from "next/link";
 import { IconLayoutSidebarLeftExpand } from "@tabler/icons";
 import { IconBrandGithub } from "@tabler/icons";
+import Link from "next/link";
 
 interface SidebarProps {
   children: React.ReactNode;
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ children }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const sideBarListItems = [
     {
       path: "/",

@@ -3,8 +3,8 @@
  * @returns A string of 8 random characters.
  */
 export default function randomize() {
-  const length = 8;
   let random = "";
+  const length = 8;
   const characters =
     "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
 

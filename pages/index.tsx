@@ -14,6 +14,7 @@ export default function Home() {
   }, []);
 
   if (!isLoggedIn) return <NotLoggedIn />;
+
   return (
     <main>
       <Form />

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { IconTrash } from "@tabler/icons";
 import { toast } from "react-hot-toast";
 import Image from "next/image";
+import axios from "axios";
 
 import IShorty from "../interfaces/IShorty";
 import IUser from "../interfaces/IUser";

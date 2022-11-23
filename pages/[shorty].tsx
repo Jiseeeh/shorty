@@ -1,8 +1,8 @@
-import axios from "axios";
+import React from "react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Head from "next/head";
-import React from "react";
+import axios from "axios";
 
 const Shorty: React.FC = () => {
   const router = useRouter();

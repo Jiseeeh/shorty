@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { IconChecks, IconClipboardCopy, IconTrash } from "@tabler/icons";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { IconChecks, IconClipboardCopy, IconTrash } from "@tabler/icons";
 
 import randomize from "../helper/randomize";
 
