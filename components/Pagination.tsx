@@ -33,6 +33,7 @@ const Pagination: React.FC<PaginationProps> = (props) => {
           className="btn"
           onClick={() => {
             if (currentButtonPage - 1 <= minButtonPage) return;
+
             setCurrentButtonPage((prevPage) => prevPage - 1);
           }}
         >
@@ -60,6 +61,7 @@ const Pagination: React.FC<PaginationProps> = (props) => {
           className="btn"
           onClick={() => {
             if (currentButtonPage + 1 > maxButtonPage) return;
+
             setCurrentButtonPage((prevPage) => prevPage + 1);
           }}
         >
