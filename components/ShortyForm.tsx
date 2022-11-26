@@ -5,7 +5,7 @@ import { IconChecks, IconClipboardCopy, IconTrash } from "@tabler/icons";
 
 import randomize from "../helper/randomize";
 
-const Form: React.FC = () => {
+const ShortyForm: React.FC = () => {
   const [formValue, setFormValue] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -111,4 +111,4 @@ const Form: React.FC = () => {
   );
 };
 
-export default Form;
+export default ShortyForm;

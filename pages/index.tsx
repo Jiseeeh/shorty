@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import Form from "../components/Form";
+import ShortyForm from "../components/ShortyForm";
 import NotLoggedIn from "../components/NotLoggedIn";
 
 export default function Home() {
@@ -17,7 +17,7 @@ export default function Home() {
 
   return (
     <main>
-      <Form />
+      <ShortyForm />
     </main>
   );
 }
