@@ -2,16 +2,14 @@ import React, { useState, useEffect } from "react";
 import { toast } from "react-hot-toast";
 import axios from "axios";
 
-import IShorty from "../interfaces/IShorty";
-import IUser from "../interfaces/IUser";
 import Pagination from "./Pagination";
 import TableRow from "./TableRow";
+import { useUserShorties } from "../helper/hooks/useShorties";
 
 const ShortiesTable: React.FC = () => {
-  const [shorties, setShorties] = useState<IShorty[]>([]);
+  const { userInfo, shorties, setShorties } = useUserShorties();
   const [shortyPerPage, setShortyPerPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
-  const [userInfo, setUserInfo] = useState<IUser | null>(null);
   const lastPostIndex = currentPage * shortyPerPage;
   const firstPostIndex = lastPostIndex - shortyPerPage;
 
@@ -36,26 +34,6 @@ const ShortiesTable: React.FC = () => {
 
     setShorties([]);
   };
-
-  const fetchUserShorties = async () => {
-    const userSessionInfo = sessionStorage.getItem("userInfo");
-    if (userSessionInfo === null) return;
-
-    const response = await axios.get("/api/shorties", {
-      params: {
-        id: JSON.parse(userSessionInfo).id,
-      },
-    });
-    setShorties(response.data.shorties);
-  };
-
-  // on mount only effect for fetching shorties
-  useEffect(() => {
-    const userInfo = sessionStorage.getItem("userInfo");
-    if (userInfo !== null) setUserInfo(JSON.parse(userInfo));
-
-    fetchUserShorties();
-  }, []);
 
   const paginatedShorties = shorties.slice(firstPostIndex, lastPostIndex);
 
