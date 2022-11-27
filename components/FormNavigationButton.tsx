@@ -1,17 +1,15 @@
 import React from "react";
 
+import { minStep, maxStep } from "../constants/constants";
+
 interface FormButtonNavigationProps {
   step: number;
-  minStep: number;
-  maxStep: number;
   prevStep: () => void;
   nextStep: () => void;
 }
 
 const FormButtonNavigation: React.FC<FormButtonNavigationProps> = ({
   step,
-  minStep,
-  maxStep,
   prevStep,
   nextStep,
 }) => {

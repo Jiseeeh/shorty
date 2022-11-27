@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 
 import AlreadyLoggedIn from "./AlreadyLoggedIn";
+import { inputLength } from "../constants/constants";
 
 interface UserFormProps {
   formType: "Login" | "Sign up";
@@ -17,10 +18,6 @@ const UserForm: React.FC<UserFormProps> = (props) => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-  const inputLength = {
-    min: 8,
-    max: 12,
-  };
 
   const onUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);

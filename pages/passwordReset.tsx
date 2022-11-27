@@ -4,6 +4,7 @@ import Head from "next/head";
 import IResetForm from "../interfaces/IResetForm";
 import PasswordResetForm from "../components/PasswordResetForm";
 import FormButtonNavigation from "../components/FormNavigationButton";
+import { minStep, maxStep, inputLength } from "../constants/constants";
 
 const ResetPassword: React.FC = () => {
   const [formValue, setFormValue] = useState<IResetForm>({
@@ -13,9 +14,6 @@ const ResetPassword: React.FC = () => {
     confirmPassword: "",
     answer: "",
   });
-
-  const minStep = 1;
-  const maxStep = 3;
 
   const prevStep = () => {
     if (formValue.step - 1 < minStep) return;
@@ -39,7 +37,6 @@ const ResetPassword: React.FC = () => {
     const { name, value } = e.currentTarget;
 
     setFormValue((prevFormValue) => ({ ...prevFormValue, [name]: value }));
-    console.log(formValue);
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -65,6 +62,8 @@ const ResetPassword: React.FC = () => {
                 name="oldUsername"
                 value={formValue.oldUsername}
                 onChange={handleOnChange}
+                minLength={inputLength.min}
+                maxLength={inputLength.max}
               />
             </form>
           </>
@@ -82,8 +81,6 @@ const ResetPassword: React.FC = () => {
       {renderForm()}
       <FormButtonNavigation
         step={formValue.step}
-        minStep={minStep}
-        maxStep={maxStep}
         nextStep={nextStep}
         prevStep={prevStep}
       />
