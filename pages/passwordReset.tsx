@@ -4,6 +4,7 @@ import { toast } from "react-hot-toast";
 
 import IResetForm from "../interfaces/IResetForm";
 import PasswordResetForm from "../components/PasswordResetForm";
+import ConfirmIdentity from "../components/ConfirmIdentity";
 import FormButtonNavigation from "../components/FormNavigationButton";
 import isFormValid from "../helper/isFormValid";
 import { minStep, maxStep, inputLength } from "../constants/constants";
@@ -75,6 +76,8 @@ const ResetPassword: React.FC = () => {
           </>
         );
       case 2:
+        return <ConfirmIdentity onChange={handleOnChange} values={formValue} />;
+      case 3:
         return (
           <PasswordResetForm onChange={handleOnChange} values={formValue} />
         );
