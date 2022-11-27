@@ -48,9 +48,6 @@ const ResetPassword: React.FC = () => {
       case 1:
         return (
           <>
-            <Head>
-              <title>Forgot Password</title>
-            </Head>
             <form className="form-control" onSubmit={handleSubmit}>
               <label className="label">
                 <span className="label-text">Username</span>
@@ -77,6 +74,9 @@ const ResetPassword: React.FC = () => {
 
   return (
     <>
+      <Head>
+        <title>Forgot Password</title>
+      </Head>
       <h1 className="text-4xl font-bold text-center">Password Reset</h1>
       {renderForm()}
       <FormButtonNavigation
