@@ -1,6 +1,7 @@
 import React from "react";
 
 import IResetForm from "../interfaces/IResetForm";
+import { inputLength } from "../constants/constants";
 
 interface PasswordResetFormProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -23,6 +24,8 @@ const PasswordResetForm: React.FC<PasswordResetFormProps> = ({
         name="newPassword"
         value={values.newPassword}
         onChange={onChange}
+        minLength={inputLength.min}
+        maxLength={inputLength.max}
       />
       <label className="label">
         <span className="label-text">Confirm password</span>
@@ -34,6 +37,8 @@ const PasswordResetForm: React.FC<PasswordResetFormProps> = ({
         name="confirmPassword"
         value={values.confirmPassword}
         onChange={onChange}
+        minLength={inputLength.min}
+        maxLength={inputLength.max}
       />
     </form>
   );
