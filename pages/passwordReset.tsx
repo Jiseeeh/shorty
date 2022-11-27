@@ -1,9 +1,11 @@
 import React, { useState, lazy, Suspense } from "react";
 import Head from "next/head";
+import { toast } from "react-hot-toast";
 
 import IResetForm from "../interfaces/IResetForm";
 import PasswordResetForm from "../components/PasswordResetForm";
 import FormButtonNavigation from "../components/FormNavigationButton";
+import isFormValid from "../helper/isFormValid";
 import { minStep, maxStep, inputLength } from "../constants/constants";
 
 const ResetPassword: React.FC = () => {
@@ -26,6 +28,13 @@ const ResetPassword: React.FC = () => {
 
   const nextStep = () => {
     if (formValue.step + 1 > maxStep) return;
+
+    const { isValid, message } = isFormValid(formValue);
+
+    if (!isValid) {
+      toast.error(message);
+      return;
+    }
 
     setFormValue((prevFormValue) => ({
       ...prevFormValue,
