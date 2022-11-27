@@ -29,6 +29,18 @@ const FormButtonNavigation: React.FC<FormButtonNavigationProps> = ({
       ) : (
         ""
       )}
+      {step === maxStep ? (
+        <button
+          className="btn"
+          onClick={() => {
+            alert("submit");
+          }}
+        >
+          Submit
+        </button>
+      ) : (
+        ""
+      )}
     </section>
   );
 };
