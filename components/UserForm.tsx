@@ -76,6 +76,9 @@ const UserForm: React.FC<UserFormProps> = (props) => {
       >
         {props.formType === "Sign up" ? "Login" : "Sign up"}
       </Link>
+      <Link className="mb-2 link link-accent" href="/passwordReset">
+        Forgot password
+      </Link>
       <button
         className={`btn hover:btn-success ${
           props.isLoading ? "btn-disabled" : ""
