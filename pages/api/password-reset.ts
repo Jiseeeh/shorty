@@ -15,7 +15,7 @@ export default async function resetPassword(
     },
   });
 
-  if (user === null) res.json({ message: "No user found!" });
+  if (user === null) res.json({ message: "No user found!", success: false });
 
   // check user's shorty
   const userShorties = await prisma.shorty.findMany({
@@ -25,7 +25,7 @@ export default async function resetPassword(
   });
 
   if (userShorties === null)
-    res.json({ message: "You do not have any shorties!" });
+    res.json({ message: "You do not have any shorties!", success: false });
 
   if (userShorties.some((shorty) => shorty.key.includes(domainName))) {
     await prisma.user.update({
@@ -37,6 +37,10 @@ export default async function resetPassword(
       },
     });
 
-    res.json({ message: "Password reset successfully!" });
-  } else res.json("Domain not found among your shorties.");
+    res.json({ message: "Reset success!", success: true });
+  } else
+    res.json({
+      message: "Domain not found among your shorties.",
+      success: false,
+    });
 }
