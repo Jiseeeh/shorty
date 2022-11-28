@@ -1,5 +1,6 @@
 import React, { useState, lazy, Suspense } from "react";
 import Head from "next/head";
+import axios from "axios";
 import { toast } from "react-hot-toast";
 
 import IResetForm from "../interfaces/IResetForm";
@@ -15,8 +16,9 @@ const ResetPassword: React.FC = () => {
     oldUsername: "",
     newPassword: "",
     confirmPassword: "",
-    answer: "",
+    domainName: "",
   });
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const prevStep = () => {
     if (formValue.step - 1 < minStep) return;
@@ -49,13 +51,27 @@ const ResetPassword: React.FC = () => {
     setFormValue((prevFormValue) => ({ ...prevFormValue, [name]: value }));
   };
 
-  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleSubmit = async () => {
     const { isValid, message } = isFormValid(formValue);
 
     if (!isValid) {
       toast.error(message);
       return;
     }
+
+    // indicators
+    setIsLoading(true);
+    const toastId = toast.loading("Checking your information...");
+
+    const response = await axios.patch("/api/password-reset", formValue);
+    const responseMessage = await response.data.message;
+    toast.dismiss(toastId);
+
+    if (response.data.success) {
+      toast.success(responseMessage);
+    } else toast.error(responseMessage);
+
+    setIsLoading(false);
   };
 
   const renderForm = () => {
@@ -63,7 +79,7 @@ const ResetPassword: React.FC = () => {
       case 1:
         return (
           <>
-            <form className="form-control">
+            <section className="form-control">
               <label className="label">
                 <span className="label-text">Username</span>
               </label>
@@ -78,7 +94,7 @@ const ResetPassword: React.FC = () => {
                 minLength={inputLength.min}
                 maxLength={inputLength.max}
               />
-            </form>
+            </section>
           </>
         );
       case 2:
@@ -99,6 +115,7 @@ const ResetPassword: React.FC = () => {
       {renderForm()}
       <FormButtonNavigation
         step={formValue.step}
+        isLoading={isLoading}
         nextStep={nextStep}
         prevStep={prevStep}
         onSubmit={handleSubmit}
