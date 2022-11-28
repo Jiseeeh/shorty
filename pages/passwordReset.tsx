@@ -2,6 +2,7 @@ import React, { useState, lazy, Suspense } from "react";
 import Head from "next/head";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import { useRouter } from "next/router";
 
 import IResetForm from "../interfaces/IResetForm";
 import PasswordResetForm from "../components/PasswordResetForm";
@@ -19,6 +20,7 @@ const ResetPassword: React.FC = () => {
     domainName: "",
   });
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const router = useRouter();
 
   const prevStep = () => {
     if (formValue.step - 1 < minStep) return;
@@ -69,6 +71,7 @@ const ResetPassword: React.FC = () => {
 
     if (response.data.success) {
       toast.success(responseMessage);
+      router.push("/login");
     } else toast.error(responseMessage);
 
     setIsLoading(false);
