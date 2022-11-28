@@ -67,6 +67,7 @@ const ResetPassword: React.FC = () => {
 
     const response = await axios.patch("/api/password-reset", formValue);
     const responseMessage = await response.data.message;
+
     toast.dismiss(toastId);
 
     if (response.data.success) {
