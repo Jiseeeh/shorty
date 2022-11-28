@@ -89,7 +89,7 @@ const ResetPassword: React.FC = () => {
               <input
                 type="text"
                 className="input input-bordered"
-                placeholder="Old username"
+                placeholder="Jiseeeh6"
                 name="oldUsername"
                 value={formValue.oldUsername}
                 onChange={handleOnChange}
