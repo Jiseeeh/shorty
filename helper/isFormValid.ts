@@ -20,12 +20,12 @@ export default function isFormValid(data: IResetForm) {
       break;
 
     case 2:
-      if (data.answer.length === 0) {
+      if (data.domainName.length === 0) {
         message = "Field is empty!";
         break;
       }
 
-      if (data.answer.length > 12) {
+      if (data.domainName.length > 12) {
         message = "Domain too long!";
         break;
       }

@@ -3,5 +3,5 @@ export default interface IResetForm {
   oldUsername: string;
   newPassword: string;
   confirmPassword: string;
-  answer: string;
+  domainName: string;
 }
