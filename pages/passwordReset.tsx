@@ -49,8 +49,13 @@ const ResetPassword: React.FC = () => {
     setFormValue((prevFormValue) => ({ ...prevFormValue, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const { isValid, message } = isFormValid(formValue);
+
+    if (!isValid) {
+      toast.error(message);
+      return;
+    }
   };
 
   const renderForm = () => {
@@ -58,7 +63,7 @@ const ResetPassword: React.FC = () => {
       case 1:
         return (
           <>
-            <form className="form-control" onSubmit={handleSubmit}>
+            <form className="form-control">
               <label className="label">
                 <span className="label-text">Username</span>
               </label>
@@ -96,6 +101,7 @@ const ResetPassword: React.FC = () => {
         step={formValue.step}
         nextStep={nextStep}
         prevStep={prevStep}
+        onSubmit={handleSubmit}
       />
     </>
   );

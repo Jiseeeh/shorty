@@ -6,12 +6,14 @@ interface FormButtonNavigationProps {
   step: number;
   prevStep: () => void;
   nextStep: () => void;
+  onSubmit: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
 const FormButtonNavigation: React.FC<FormButtonNavigationProps> = ({
   step,
   prevStep,
   nextStep,
+  onSubmit,
 }) => {
   return (
     <section className="my-3 flex gap-3">
@@ -30,12 +32,7 @@ const FormButtonNavigation: React.FC<FormButtonNavigationProps> = ({
         ""
       )}
       {step === maxStep ? (
-        <button
-          className="btn"
-          onClick={() => {
-            alert("submit");
-          }}
-        >
+        <button className="btn" onClick={onSubmit}>
           Submit
         </button>
       ) : (
