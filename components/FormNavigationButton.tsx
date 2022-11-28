@@ -4,6 +4,7 @@ import { minStep, maxStep } from "../constants/constants";
 
 interface FormButtonNavigationProps {
   step: number;
+  isLoading: boolean;
   prevStep: () => void;
   nextStep: () => void;
   onSubmit: () => void;
@@ -11,6 +12,7 @@ interface FormButtonNavigationProps {
 
 const FormButtonNavigation: React.FC<FormButtonNavigationProps> = ({
   step,
+  isLoading,
   prevStep,
   nextStep,
   onSubmit,
@@ -32,7 +34,10 @@ const FormButtonNavigation: React.FC<FormButtonNavigationProps> = ({
         ""
       )}
       {step === maxStep ? (
-        <button className="btn" onClick={onSubmit}>
+        <button
+          className={`btn ${isLoading ? "loading btn-disabled" : ""}`}
+          onClick={onSubmit}
+        >
           Submit
         </button>
       ) : (
