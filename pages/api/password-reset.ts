@@ -6,12 +6,12 @@ export default async function resetPassword(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { oldUsername, newPassword, domainName } = req.body;
+  const { username, newPassword, domainName } = req.body;
 
   // check user if exists
   const user = await prisma.user.findFirst({
     where: {
-      name: oldUsername,
+      name: username,
     },
   });
 
@@ -20,7 +20,7 @@ export default async function resetPassword(
   // check user's shorty
   const userShorties = await prisma.shorty.findMany({
     where: {
-      ownerName: oldUsername,
+      ownerName: username,
     },
   });
 
@@ -30,7 +30,7 @@ export default async function resetPassword(
   if (userShorties.some((shorty) => shorty.key.includes(domainName))) {
     await prisma.user.update({
       where: {
-        name: oldUsername,
+        name: username,
       },
       data: {
         password: newPassword,

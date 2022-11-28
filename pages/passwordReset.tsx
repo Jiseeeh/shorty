@@ -14,7 +14,7 @@ import { minStep, maxStep, inputLength } from "../constants/constants";
 const ResetPassword: React.FC = () => {
   const [formValue, setFormValue] = useState<IResetForm>({
     step: 1,
-    oldUsername: "",
+    username: "",
     newPassword: "",
     confirmPassword: "",
     domainName: "",
@@ -90,8 +90,8 @@ const ResetPassword: React.FC = () => {
                 type="text"
                 className="input input-bordered"
                 placeholder="Jiseeeh6"
-                name="oldUsername"
-                value={formValue.oldUsername}
+                name="username"
+                value={formValue.username}
                 onChange={handleOnChange}
                 autoComplete="off"
                 minLength={inputLength.min}

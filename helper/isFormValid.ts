@@ -6,12 +6,12 @@ export default function isFormValid(data: IResetForm) {
 
   switch (data.step) {
     case 1:
-      if (data.oldUsername.length === 0) {
+      if (data.username.length === 0) {
         message = "Field is empty!";
         break;
       }
 
-      if (!(data.oldUsername.length >= 8 && data.oldUsername.length <= 12)) {
+      if (!(data.username.length >= 8 && data.username.length <= 12)) {
         message = "Not a valid username!";
         break;
       }

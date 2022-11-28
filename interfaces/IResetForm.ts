@@ -1,6 +1,6 @@
 export default interface IResetForm {
   step: number;
-  oldUsername: string;
+  username: string;
   newPassword: string;
   confirmPassword: string;
   domainName: string;
