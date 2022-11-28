@@ -24,6 +24,7 @@ const ConfirmIdentity: React.FC<ConfirmIdentityProps> = ({
         name="answer"
         value={values.answer}
         onChange={onChange}
+        autoComplete="off"
         maxLength={inputLength.max}
       />
     </form>

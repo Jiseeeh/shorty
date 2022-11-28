@@ -69,6 +69,7 @@ const ResetPassword: React.FC = () => {
                 name="oldUsername"
                 value={formValue.oldUsername}
                 onChange={handleOnChange}
+                autoComplete="off"
                 minLength={inputLength.min}
                 maxLength={inputLength.max}
               />
