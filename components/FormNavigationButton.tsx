@@ -6,7 +6,7 @@ interface FormButtonNavigationProps {
   step: number;
   prevStep: () => void;
   nextStep: () => void;
-  onSubmit: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  onSubmit: () => void;
 }
 
 const FormButtonNavigation: React.FC<FormButtonNavigationProps> = ({
