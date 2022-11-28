@@ -13,9 +13,9 @@ const ConfirmIdentity: React.FC<ConfirmIdentityProps> = ({
   values,
 }) => {
   return (
-    <form className="form-control">
+    <section className="form-control">
       <label className="label">
-        <span className="label-text">Domain of your last shorty</span>
+        <span className="label-text">Domain of the link you shortened.</span>
       </label>
       <input
         type="text"
@@ -28,7 +28,13 @@ const ConfirmIdentity: React.FC<ConfirmIdentityProps> = ({
         spellCheck="false"
         maxLength={inputLength.max}
       />
-    </form>
+      <label className="label">
+        <span className="label-text">
+          <span className="font-bold">NOTE:</span> It must exist in your
+          account.
+        </span>
+      </label>
+    </section>
   );
 };
 
