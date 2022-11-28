@@ -2,6 +2,10 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 import { prisma } from "../../lib/prisma";
 
+/**
+ * It checks if the user exists, if the user has a shorty that contains the domain name provided, and
+ * if so, it updates the user's password.
+ */
 export default async function resetPassword(
   req: NextApiRequest,
   res: NextApiResponse
@@ -17,7 +21,7 @@ export default async function resetPassword(
 
   if (user === null) res.json({ message: "No user found!", success: false });
 
-  // check user's shorty
+  // get user's shorty
   const userShorties = await prisma.shorty.findMany({
     where: {
       ownerName: username,
@@ -27,6 +31,7 @@ export default async function resetPassword(
   if (userShorties === null)
     res.json({ message: "You do not have any shorties!", success: false });
 
+  // check there's at-least one shorty that contains the domain name provided.
   if (userShorties.some((shorty) => shorty.key.includes(domainName))) {
     await prisma.user.update({
       where: {
