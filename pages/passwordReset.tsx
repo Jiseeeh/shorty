@@ -5,11 +5,12 @@ import { toast } from "react-hot-toast";
 import { useRouter } from "next/router";
 
 import IResetForm from "../interfaces/IResetForm";
-import PasswordResetForm from "../components/PasswordResetForm";
-import ConfirmIdentity from "../components/ConfirmIdentity";
+import UserDetails from "../components/form-steps/UserDetails";
+import ConfirmIdentity from "../components/form-steps/ConfirmIdentity";
+import PasswordReset from "../components/form-steps/PasswordReset";
 import FormButtonNavigation from "../components/FormNavigationButton";
 import isFormValid from "../helper/isFormValid";
-import { minStep, maxStep, inputLength } from "../constants/constants";
+import { minStep, maxStep } from "../constants/constants";
 
 const ResetPassword: React.FC = () => {
   const [formValue, setFormValue] = useState<IResetForm>({
@@ -81,32 +82,11 @@ const ResetPassword: React.FC = () => {
   const renderForm = () => {
     switch (formValue.step) {
       case 1:
-        return (
-          <>
-            <section className="form-control">
-              <label className="label">
-                <span className="label-text">Username</span>
-              </label>
-              <input
-                type="text"
-                className="input input-bordered"
-                placeholder="Jiseeeh6"
-                name="username"
-                value={formValue.username}
-                onChange={handleOnChange}
-                autoComplete="off"
-                minLength={inputLength.min}
-                maxLength={inputLength.max}
-              />
-            </section>
-          </>
-        );
+        return <UserDetails onChange={handleOnChange} values={formValue} />;
       case 2:
         return <ConfirmIdentity onChange={handleOnChange} values={formValue} />;
       case 3:
-        return (
-          <PasswordResetForm onChange={handleOnChange} values={formValue} />
-        );
+        return <PasswordReset onChange={handleOnChange} values={formValue} />;
     }
   };
 
