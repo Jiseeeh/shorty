@@ -20,6 +20,11 @@ export default async function resetPassword(
   });
 
   if (user === null) res.json({ message: "No user found!", success: false });
+  else if (user.password === newPassword)
+    res.json({
+      message: "You provided your old password!",
+      success: false,
+    });
 
   // get user's shorty
   const userShorties = await prisma.shorty.findMany({
