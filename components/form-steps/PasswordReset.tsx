@@ -1,17 +1,14 @@
 import React from "react";
 
-import IResetForm from "../interfaces/IResetForm";
-import { inputLength } from "../constants/constants";
+import IResetForm from "../../interfaces/IResetForm";
+import { inputLength } from "../../constants/constants";
 
-interface PasswordResetFormProps {
+interface PasswordResetProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   values: IResetForm;
 }
 
-const PasswordResetForm: React.FC<PasswordResetFormProps> = ({
-  onChange,
-  values,
-}) => {
+const PasswordReset: React.FC<PasswordResetProps> = ({ onChange, values }) => {
   return (
     <form className="form-control">
       <label className="label">
@@ -44,4 +41,4 @@ const PasswordResetForm: React.FC<PasswordResetFormProps> = ({
   );
 };
 
-export default PasswordResetForm;
+export default PasswordReset;

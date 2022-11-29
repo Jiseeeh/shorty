@@ -1,7 +1,7 @@
 import React from "react";
 
-import IResetForm from "../interfaces/IResetForm";
-import { inputLength } from "../constants/constants";
+import IResetForm from "../../interfaces/IResetForm";
+import { inputLength } from "../../constants/constants";
 
 interface ConfirmIdentityProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
