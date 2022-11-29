@@ -10,7 +10,7 @@ interface PasswordResetProps {
 
 const PasswordReset: React.FC<PasswordResetProps> = ({ onChange, values }) => {
   return (
-    <form className="form-control">
+    <section className="form-control">
       <label className="label">
         <span className="label-text">New password</span>
       </label>
@@ -37,7 +37,7 @@ const PasswordReset: React.FC<PasswordResetProps> = ({ onChange, values }) => {
         minLength={inputLength.min}
         maxLength={inputLength.max}
       />
-    </form>
+    </section>
   );
 };
 
