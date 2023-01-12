@@ -2,6 +2,8 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { Toaster } from "react-hot-toast";
 import Head from "next/head";
+import { Analytics } from "@vercel/analytics/react";
+
 import Sidebar from "../components/Sidebar";
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -47,6 +49,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <Toaster />
         <Component {...pageProps} />
       </Sidebar>
+      <Analytics />
     </>
   );
 }
