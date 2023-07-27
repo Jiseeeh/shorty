@@ -28,7 +28,7 @@ const ShortyForm: React.FC = () => {
     const urlRegex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
 
     if (!formValue.match(urlRegex)) {
-      toast.error("That is not a valid link bro.");
+      toast.error("That is not a valid link.");
       return;
     }
 
