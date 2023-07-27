@@ -25,6 +25,13 @@ const ShortyForm: React.FC = () => {
       return;
     }
 
+    const urlRegex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
+
+    if (!formValue.match(urlRegex)) {
+      toast.error("That is not a valid link bro.");
+      return;
+    }
+
     setIsLoading(true);
     const toastId = toast.loading("Creating your shorty...");
 
